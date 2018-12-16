@@ -1,7 +1,6 @@
 package com.ferraborghini.error;
 
 import com.alibaba.fastjson.JSONObject;
-import com.ferraborghini.controller.TestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -14,12 +13,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 
 @ControllerAdvice  // 此处需要加上注解
 public class GlobalError {
-    Logger logger = LoggerFactory.getLogger(GlobalError.class);
+    private Logger logger = LoggerFactory.getLogger(GlobalError.class);
 
     @ExceptionHandler(NullPointerException.class)
     @ResponseBody
@@ -32,7 +29,7 @@ public class GlobalError {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public ResponseEntity<?> jsonHandler(HttpServletRequest request, Exception e) throws Exception {
+    public ResponseEntity<?> jsonHandler(HttpServletRequest request, Exception e){
         logger.error("got a null point exception {}", e.getMessage());
         return ServiceError.SERVICE_ERROR.response("");
     }
