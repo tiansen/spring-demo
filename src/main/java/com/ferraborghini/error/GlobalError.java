@@ -38,7 +38,7 @@ public class GlobalError {
     public ResponseEntity<?> handleBindException(MethodArgumentNotValidException ex) {
 
         FieldError fieldError = ex.getBindingResult().getFieldError();
-        logger.info("参数校验异常:{}({})", fieldError.getDefaultMessage(), fieldError.getField());
+        logger.info("param error:{}({})", fieldError.getDefaultMessage(), fieldError.getField());
         ObjectError error = ex.getBindingResult().getAllErrors().get(0);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(JSONObject.parseObject(error.getDefaultMessage(), ErrorEntity.class));
 
