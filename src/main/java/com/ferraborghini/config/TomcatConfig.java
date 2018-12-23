@@ -15,6 +15,7 @@ public class TomcatConfig {
         tomcatFactory.addConnectorCustomizers(connector -> {
             Http11NioProtocol protocol = (Http11NioProtocol) connector.getProtocolHandler();
             //设置最大连接数
+            //public static final String DEFAULT_PROTOCOL = "org.apache.coyote.http11.Http11NioProtocol";
             protocol.setKeepAliveTimeout(10 * 1000);
             protocol.setMaxKeepAliveRequests(100);
         });
