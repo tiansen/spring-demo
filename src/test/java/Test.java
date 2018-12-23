@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public class Test {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         String queryString = "!message:(test test1) && user: \\\\-1";
         parseFilter(queryString);
 
@@ -40,35 +40,35 @@ public class Test {
 
     }
 
-    public static void parseFilter(String queryString){
+    public static void parseFilter(String queryString) {
         QueryParserBase parser = new QueryParser("_all", new WhitespaceAnalyzer());
         try {
             Query query = parser.parse(queryString);
-            if (query instanceof BooleanQuery){
+            if (query instanceof BooleanQuery) {
                 Iterator<BooleanClause> iterator = ((BooleanQuery) query).iterator();
-                while(iterator.hasNext()){
+                while (iterator.hasNext()) {
                     BooleanClause clause = iterator.next();
                     Query query1 = clause.getQuery();
-                    if (query1 instanceof TermRangeQuery){
+                    if (query1 instanceof TermRangeQuery) {
                         String lowerTerm = new String(((TermRangeQuery) query1).getLowerTerm().bytes);
                         Pattern pattern = Pattern.compile("([1-9]\\d*\\.?\\d*)|(0\\.\\d*[1-9])");
-                        if (pattern.matcher(lowerTerm).matches()){
+                        if (pattern.matcher(lowerTerm).matches()) {
                             System.out.println("lowerTerm is number");
-                        }else{
+                        } else {
                             System.out.println("lowerTerm is not number");
                         }
                         String upperTerm = new String(((TermRangeQuery) query1).getUpperTerm().bytes);
-                        if (pattern.matcher(upperTerm).matches()){
+                        if (pattern.matcher(upperTerm).matches()) {
                             System.out.println("upperTerm is number");
-                        }else{
+                        } else {
                             System.out.println("upperTerm is not number");
                         }
 
-                    }else if (query1 instanceof TermQuery){
+                    } else if (query1 instanceof TermQuery) {
                         System.out.println(query1.toString());
-                    }else if (query1 instanceof BooleanQuery){
+                    } else if (query1 instanceof BooleanQuery) {
                         Iterator<BooleanClause> booleanClauseIterator = ((BooleanQuery) query1).iterator();
-                        while(booleanClauseIterator.hasNext()) {
+                        while (booleanClauseIterator.hasNext()) {
                             BooleanClause clause1 = booleanClauseIterator.next();
                             System.out.print(clause1.toString());
                             if (booleanClauseIterator.hasNext()) {
@@ -80,7 +80,7 @@ public class Test {
                                         System.out.print(" && ");
                                         break;
                                 }
-                            }else{
+                            } else {
 
                             }
                         }

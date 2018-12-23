@@ -29,7 +29,7 @@ public class GlobalError {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public ResponseEntity<?> jsonHandler(HttpServletRequest request, Exception e){
+    public ResponseEntity<?> jsonHandler(HttpServletRequest request, Exception e) {
         logger.error("got a null point exception {}", e.getMessage());
         return ServiceError.SERVICE_ERROR.response("");
     }

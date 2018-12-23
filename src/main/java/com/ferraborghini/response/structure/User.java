@@ -31,7 +31,7 @@ public class User {
     @JsonAnySetter
     @Getter
     @JsonIgnore
-    Map<String, Object> others= new HashMap<>();
+    Map<String, Object> others = new HashMap<>();
 
 
 }

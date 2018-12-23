@@ -22,11 +22,10 @@ public class TestController {
 
     @RequestMapping(value = "/hello", consumes = {"application/json"}, method = RequestMethod.POST)
     public ResponseEntity<?> test(
-            @RequestBody @Valid User user)
-    {
-        Map<String,Object> othersParams = user.getOthers();
-        if (othersParams.size() > 0){
-            return ServiceError.JSON_FORMAT_ERROR.response("unknown field "+ othersParams.keySet());
+            @RequestBody @Valid User user) {
+        Map<String, Object> othersParams = user.getOthers();
+        if (othersParams.size() > 0) {
+            return ServiceError.JSON_FORMAT_ERROR.response("unknown field " + othersParams.keySet());
         }
         logger.info("user name: {}, user sex: {}, user age: {}", user.getName(), user.getSex(), user.getAge());
         return new ResponseEntity<>(user, HttpStatus.OK);

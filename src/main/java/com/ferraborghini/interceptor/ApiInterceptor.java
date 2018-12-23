@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ApiInterceptor implements HandlerInterceptor {
 
     Logger logger = LoggerFactory.getLogger(ApiInterceptor.class);
+
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         logger.info("FirstInterceptor preHandle");
